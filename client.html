@@ -1,5 +1,79 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    </head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href="css/client.css">
+    <title>Simple WebSocket Chat</title>
+
+
+    <script>
+
+        // Open connection to WebSocketServer with custom echo-protocol
+        var connection = new WebSocket("ws://localhost:8080", "echo-protocol");
+
+        // called when connection is established
+        connection.onopen = function () {
+            // console.log("sending '" + dataToSend + "'");
+        };
+
+        // called when an error occurs
+        connection.onerror = function (error) {
+            console.log(error);
+            alert(error);
+        };
+
+        // called when message from server is received
+        connection.onmessage = function (e) {
+            console.log("Server: " + e.data);
+            // Append to TextArea
+            var obj = document.getElementById("serverResponse");
+            obj.value += "Server: " + e.data + '\n';
+        };
+
+        // called when connection was somehow closed
+        connection.onclose = function () {
+            console.log("Connection was closed");
+            // Append to TextArea
+            var obj = document.getElementById("serverResponse");
+            obj.value += "Connection was closed\n\n";
+        };
+
+        // called on button press 'send...', sends message to server
+        function send() {
+            // gets text and sends it to the Server
+            var textContainer = document.getElementById("message");
+            var text = textContainer.value;
+            connection.send(text);
+            textContainer.value = "";
+
+            // Show our own message
+            var obj = document.getElementById("serverResponse");
+            obj.value += "Client: " + text + '\n';
+        }
+
+        // Called when button 'close Websocket' is pressed to manually close the connection
+        function closeConnection() {
+            connection.close();
+        }
+
+        // Show ugly help on button press '?'
+        function showHelp() {
+            alert("Commands:\n/status               number of connections\n/date                 Date\n/serverClose      close Connection [server-side]\n/humanFirewall\n\n\nEverything is server-side");
+        }
+    </script>
+
+</head>
 <body>
-    <h1>Hallo</h1></body></html>
+<!-- TextArea to display every message -->
+<textarea disabled id="serverResponse" rows="20" cols="50"></textarea>
+<br>
+<!-- What to send to the server -->
+<input type="text" id="message" size="40">
+<br>
+<br>
+<!-- Button -->
+<input type="button" class="buttonDesign" value="Send via WebSocket" onclick="send()">
+<input type="button" class="buttonDesign" value="close WebSocket" onclick="closeConnection()">
+<input type="button" class="buttonDesign" value="?" onclick="showHelp()">
+</body>
+</html>
