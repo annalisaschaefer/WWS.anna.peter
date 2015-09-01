@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6058f033-1f61-42d5-90b7-020d056e9ada" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/client.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client.html" afterPath="$PROJECT_DIR$/client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/client.css" afterPath="$PROJECT_DIR$/css/client.css" />
     </list>
     <ignored path="WWS.anna.peter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/css/client.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -70,9 +68,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/css/client.css" />
         <option value="$PROJECT_DIR$/client.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/css/client.css" />
       </list>
     </option>
   </component>
@@ -247,7 +245,7 @@
     <entry file="file://$PROJECT_DIR$/css/client.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
           <folding />
         </state>
       </provider>
