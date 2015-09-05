@@ -1,151 +1,202 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
 
-		<title>WebSockets</title>
+    <title>WebSockets</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
 
-		</script>
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
 
-	<body>
+<body>
 
-		<div class="reveal">
+<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>Web Sockets</h1>
-                    <h3><a href="https://github.com/websockets/ws" target="_blank"> WS Library</a></h3>
-					<p>
-                       <small> 
-						Peter Ulbrich und Anna-Lisa Schaefer</small>
-					</p>
-				</section>
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section data-background="src/internetBG.png">
+            <h1>Web Sockets</h1>
 
-				<section>
-					<h2>Übersicht</h2>
-					<p>
-                        <ol>
-                            <li>Theoretische Grundlagen</li>
-                            <li>Client</li>
-                            <li>Server</li>
-                            <li>SystemDemo</li>
-                    </ol>
-					</p>
-				</section>
+            <h3><a href="https://github.com/websockets/ws" target="_blank"
+                   style="color: darkred; text-decoration: underline"> WS Library</a></h3>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Theoretische Grundlagen</h2>
-						<p><ol><li>Was sind WebSockets?</li>
-                            <li>Wie kommunizieren Client und Server?</li></ol>
-                        </p>
-						
-						<br>
-						<a href="#" class="navigate-down">
-							down
-						</a>
-					</section>
-					<section>
-						<h2>Was sind WebSockets?</h2>
-						<p>Inhalt. Inhalt. Inhalt.</p>
-					</section>
-					<section>
-						<h2>Wie kommunizieren Client und Server? </h2>
-						<p>Inhalt. Inhalt. Inhalt..</p>
-						<br>
-						<a href="#/2">
-							up
-						</a>
-					</section>
-				</section>
+            <p>
+                <small>
+                    <span style="color:orangered"> Peter Ulbrich und Anna-Lisa Schaefer</span>
+                </small>
+            </p>
+        </section>
 
-				<section>
-					<h2>Client</h2>
-					<p>
-				        Inhalt. Inhalt. Inhalt.
-					</p>
-				</section>
+        <section>
+            <section id="fragments">
+                <h2>Übersicht</h2>
+                <ol>
+                    <li class="fragment">Theoretische Grundlagen</li>
+                    <li class="fragment">Client</li>
+                    <li class="fragment">Server</li>
+                    <li class="fragment">System-Demo</li>
+                </ol>
 
-				<section>
-					<h2>Server</h2>
-					<p>
-						Inhalt. Inhalt. Inhalt.
-					</p>
-				</section>
+            </section>
+        </section>
 
-				<section>
-					<h2>System Demo</h2>
-                    
-                    <a href="client.html" target="popup" onclick="window.open('client.html', 'client', 'width=800, height = 800')">Client öffnen</a>
-                    <br>
-					<a href="client.html" target="popup" onclick="window.open('client.html', 'client2', 'width=800, height = 800')">Client2 öffnen</a>
-				</section>
-        
-                <section>
-					<h2>Danke für eure Aufmerksamkeit</h2>
-				</section>
+        <!-- Example of nested vertical slides -->
+        <section>
+            <section>
+                <h2>Theoretische Grundlagen</h2>
+                <ol>
+                    <li class="fragment">Was sind WebSockets?</li>
+                    <li class="fragment">Wie kommunizieren Client und Server?</li>
+                </ol>
 
-			</div>
+            </section>
 
-		</div>
+            <section>
+                <h2>Was sind WebSockets?</h2>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                <ul>
+                    <li class="fragment">Netzwerkprotokoll</li>
+                    <li class="fragment">bidirektionale Verbindung Webanwendung <-> WebSocket-Server</li>
+                    <div class="fragment"><img src="src/protokollstapel.png" style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto"></div>
+                    <li class="fragment">URL-Schemata: </li>
+                    <ul>
+                        <li class="fragment">ws  [unverschlüsselt]</li>
+                        <li class="fragment">wss [verschlüsselt]</li>
+                    </ul>
+                </ul>
+            </section>
 
-		<script>
+            <section data-background="http://i.imgur.com/gLVZSH1.jpg">
+                <h6>Was sind WebSockets?</h6>
+                <ol>
+                    <li>Probieren geht über Studieren</li>
+                    <li>Liebe geht über Triebe</li>
+                    <li>Tante fällt über Kante</li>
+                </ol>
+            </section>
+            <section>
+                <h2>Wie kommunizieren Client und Server? </h2>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+                <p>Inhalt. Inhalt. Inhalt..</p>
+                <br>
+                <a href="#/2">
+                    up
+                </a>
+            </section>
+        </section>
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+        <section>
+            <h2>Client</h2>
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+            <p>
+                Inhalt. Inhalt. Inhalt.
+            </p>
+            <pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+                Reveal.addEventListener( 'customevent', function() {
+                console.log( '"customevent" has fired' );
+                } );
+            </code></pre>
+        </section>
 
-		</script>
+        <section>
+            <h2>Server</h2>
 
-	</body>
+            <p>
+                Inhalt. Inhalt. Inhalt.
+            </p>
+        </section>
+
+        <section>
+            <h2>System Demo</h2>
+
+            <a href="client.html" target="popup"
+               onclick="window.open('client.html', 'client', 'width=800, height = 800')">Client öffnen</a>
+            <br>
+            <a href="client.html" target="popup"
+               onclick="window.open('client.html', 'client2', 'width=800, height = 800')">Client2 öffnen</a>
+        </section>
+
+        <section>
+            <h2>Danke für eure Aufmerksamkeit</h2>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'plugin/zoom-js/zoom.js', async: true},
+            {src: 'plugin/notes/notes.js', async: true}
+        ]
+    });
+
+</script>
+
+</body>
 </html>
