@@ -75,6 +75,7 @@
                 <ol>
                     <li class="fragment">Was sind WebSockets?</li>
                     <li class="fragment">Wie kommunizieren Client und Server?</li>
+                    <li class="fragment">Anwendungsbeispiele</li>
                 </ol>
 
             </section>
@@ -110,19 +111,160 @@
                     up
                 </a>
             </section>
+            <section>
+                <h2>Anwendungsbeispiele </h2>
+
+                <ol>
+                    <li class="fragment">Online-Spiele mit mehreren Mitspielern</li>
+                    <li class="fragment">Chat-Anwendungen</li>
+                    <li class="fragment">Live-Sport-Ticker</li>
+                    <li class="fragment">andere Anwendungen, die geringe Lantenz benötigen</li>
+                </ol>
+            </section>
         </section>
 
         <section>
-            <h2>Client</h2>
+            <section>
+                <h2>Client</h2>
+                <ol>
+                    <li class="fragment">WebSocket erstellen</li>
+                    <li class="fragment">WebSocket Attribute</li>
+                    <li class="fragment">WebSocket Events & Handler</li>
+                    <li class="fragment">WebSocket Methoden</li>
+                </ol>
+            </section>
 
-            <p>
-                Inhalt. Inhalt. Inhalt.
-            </p>
-            <pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-                Reveal.addEventListener( 'customevent', function() {
-                console.log( '"customevent" has fired' );
-                } );
-            </code></pre>
+            <section>
+                <h6>WebSocket erstellen</h6>
+                <pre><code class="javascript" data-trim style="font-size: 18px;">
+                    var Socket = new WebSocket(url, [protocol] );
+                </code><small>WebSocket Konstruktor</small></pre>
+                <ul>
+                    <li class="fragment">Socket</li>
+                    <ul>
+                        <li class="fragment">logischer Endpunkt einer Verbindung</li>
+                        <li class="fragment">Adressenkombination aus IP-Adresse und Portnummer</li>
+                    </ul>
+                    <li class="fragment">optionales Protokoll, dass der Server unterstützen muss</li>
+                </ul>
+                <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">
+                    var connection = new WebSocket("ws://46.101.250.180:8080", "echo-protocol");
+                </code><small>konkretes Demo-Beispiel</small></pre>
+            </section>
+
+            <section>
+                <h6>WebSocket Attribute [read-only]</h6>
+                <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">
+                    Socket.readyState
+                </code></pre>
+                <ul>
+                    <span style="font-size: 30px">
+                        <li class="fragment">0 [CONNECTING]: Verbindung noch nicht hergestellt</li>
+                        <li class="fragment">1 [OPEN]: Verbindung hergestellt, Kommunikations möglich</li>
+                        <li class="fragment">2 [CLOSING]: Verbindung im Prozess des Schließens.</li>
+                        <li class="fragment">3 [CLOSED]: Verbindung geschlossen / konnte nicht hergestellt werden</li>
+                     </span>
+                </ul>
+
+                <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">
+                    Socket.bufferedAmount
+                </code></pre>
+                <span style="font-size: 30px" class="fragment">
+                    <ul>
+                        <li>Anzahl der Bytes, die durch send() gebuffert und noch nicht über das Netzwerk versand wurden.</li>
+                    </ul>
+                </span>
+            </section>
+
+            <section>
+                <h6>WebSocket Events & Handler</h6>
+                <table>
+                    <tr style="color: red; font-weight: bolder">
+                        <th>EVENT</th>
+                        <th>EVENT HANDLER</th>
+                        <th>WANN?</th>
+                    </tr>
+                    <tr>
+                        <td>open</td>
+                        <td>Socket.onopen</td>
+                        <td>Wenn Verbindung eingerichtet ist</td>
+                    </tr>
+                    <tr>
+                        <td>message</td>
+                        <td>Socket.onmessage</td>
+                        <td>Wenn Daten vom Server erhalten werden</td>
+                    </tr>
+                    <tr>
+                        <td>error</td>
+                        <td>Socket.onerror</td>
+                        <td>Wenn ein Fehler in der Kommunikation auftritt</td>
+                    </tr>
+                    <tr>
+                        <td>close</td>
+                        <td>Socket.onclose</td>
+                        <td>Wenn die Verbindung geschlossen wurde</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <pre><code class="javascript"  style="font-size: 18px;">
+                    connection.onopen = function () {
+                        console.log("Connection is open");
+                    };
+                    connection.onerror = function (error) {
+                        console.log(error);
+                        alert(error);
+                    };
+                    connection.onmessage = function (e) {
+                        console.log("Server: " + e.data);
+                        // Append to TextArea
+                        var obj = document.getElementById("serverResponse");
+                        obj.value += "Server: " + e.data + '\n';
+                    };
+                </code></pre>
+                    <pre><code class="javascript"  style="font-size: 18px;">
+                    connection.onclose = function () {
+                        console.log("Connection was closed");
+                        // Append to TextArea
+                        var obj = document.getElementById("serverResponse");
+                        obj.value += "Connection was closed\n\n";
+                    };
+                    </code></pre>
+            </section>
+
+            <section>
+                <h6>WebSocket Methoden</h6>
+                <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">
+                    void send(data)
+                </code></pre>
+                <ul>
+                    <li class="fragment">Überträgt die Daten über die Verbindung zum Server</li>
+                </ul>
+                <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">
+                    void close([code, reason])
+                </code></pre>
+                <ul>
+                    <li class="fragment">Beendet die Vorhandene Verbindung</li>
+                </ul>
+                <pre class="fragment"><code class="javascript" style="font-size: 16px;">
+                    // called on button press 'send...', sends message to server
+                    function send() {
+                    // gets text and sends it to the Server
+                    var textContainer = document.getElementById("message");
+                    var text = textContainer.value;
+                    connection.send(text);
+                    textContainer.value = "";
+                    // Show our own message
+                    var obj = document.getElementById("serverResponse");
+                    obj.value += "Client: " + text + '\n';
+                    }
+                    // Called when button 'close Websocket' is pressed to manually close
+                    function closeConnection() {
+                    connection.close();
+                    }
+                </code></pre>
+            </section>
         </section>
 
         <section>
