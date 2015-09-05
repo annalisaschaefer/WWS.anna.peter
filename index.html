@@ -63,6 +63,7 @@
                     <li class="fragment">Client</li>
                     <li class="fragment">Server</li>
                     <li class="fragment">System-Demo</li>
+                    <li class="fragment">Fragen</li>
                 </ol>
 
             </section>
@@ -74,7 +75,8 @@
                 <h2>Theoretische Grundlagen</h2>
                 <ol>
                     <li class="fragment">Was sind WebSockets?</li>
-                    <li class="fragment">Wie kommunizieren Client und Server?</li>
+                    <li class="fragment">Vergleich mit HTTP</li>
+                    <li class="fragment">WebSocket-Protokoll-Handshake</li>
                     <li class="fragment">Anwendungsbeispiele</li>
                 </ol>
 
@@ -86,7 +88,10 @@
                 <ul>
                     <li class="fragment">Netzwerkprotokoll</li>
                     <li class="fragment">bidirektionale Verbindung Webanwendung <-> WebSocket-Server</li>
-                    <div class="fragment"><img src="src/protokollstapel.png" style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto"></div>
+                    <figure class="fragment">
+                        <div><img src="src/protokollstapel.png" style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto"></div>
+                        <figcaption style="text-align: center"><small>baut auf TCP auf</small></figcaption>
+                    </figure>
                     <li class="fragment">URL-Schemata: </li>
                     <ul>
                         <li class="fragment">ws  [unverschlüsselt]</li>
@@ -96,28 +101,65 @@
             </section>
 
             <section>
-                <h6>Was sind WebSockets?</h6>
-                <ol>
-                    <li class="fragment">DUMMY1</li>
-                    <li class="fragment">DUMMY2</li>
-                </ol>
+                <h2>Vergleich mit HTTP </h2>
+                <figure class="fragment">
+                    <div><img src="src/httpVSws.png" style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto"></div>
+                    <figcaption style="text-align: center"><small>Anfrage->Antwort VS bidirektionale Verbindung</small></figcaption>
+                </figure>
+                <ul>
+                    <li class="fragment">Eine TCP-Verbindung bleibt nach Handshake bestehen</li>
+                    <li class="fragment">Overhead HTTP (<= 2000 Bytes); WebSocket (2 bytes)</li>
+                </ul>
             </section>
-            <section>
-                <h2>Wie kommunizieren Client und Server? </h2>
 
-                <p>Inhalt. Inhalt. Inhalt..</p>
-                <br>
-                <a href="#/2">
-                    up
-                </a>
+            <section>
+                <h2>WS-Protokoll-Handshake </h2>
+                <ul>
+                    <li class="fragment">zu Beginn jeder Verbindung</li>
+                    <li class="fragment">ähnelt HTTP und ist abwärtskompatibel</li>
+                    <ul>
+                        <li class="fragment" style="font-size: 28px">erlaubt Nutzung des Standard-HTTP-Ports „80“</li>
+                    </ul>
+                    <li class="fragment">beinhaltet weitere Daten (verwendetes Protokoll usw)</li>
+                </ul>
+
             </section>
+
+            <section>
+                <h5 style="font-size: 30px">konkreter Handshake auf Server </h5>
+                <pre class="fragment"><code class="javascript" style="font-size: 11px;">
+                    GET / HTTP/1.1
+                    Host: 46.101.250.180:8080
+                    Connection: Upgrade
+                    Pragma: no-cache
+                    Cache-Control: no-cache
+                    Upgrade: websocket
+                    Origin: http://46.101.250.180
+                    Sec-WebSocket-Version: 13
+                    User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64)
+                    Accept-Encoding: gzip, deflate, sdch
+                    Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+                    Sec-WebSocket-Key: iBgwl+Rk0N0aptagxD3+pQ==
+                    Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+                    Sec-WebSocket-Protocol: echo-protocol
+                    </code>
+                <code class="javascript" style="font-size: 11px;">
+                    HTTP/1.1 101 Switching Protocols
+                    Upgrade: websocket
+                    Connection: Upgrade
+                    Sec-WebSocket-Accept: xAEpe+Pu/XyPKLfOL19lYW4nFSk=
+                    Sec-WebSocket-Protocol: echo-protocol
+                    Origin: http://46.101.250.180
+                </code></pre>
+            </section>
+
             <section>
                 <h2>Anwendungsbeispiele </h2>
 
                 <ol>
                     <li class="fragment">Online-Spiele mit mehreren Mitspielern</li>
                     <li class="fragment">Chat-Anwendungen</li>
-                    <li class="fragment">Live-Sport-Ticker</li>
+                    <li class="fragment">Live Handls-/Auktions-/Sportbenachrichtigungen</li>
                     <li class="fragment">andere Anwendungen, die geringe Lantenz benötigen</li>
                 </ol>
             </section>
@@ -239,13 +281,13 @@
                     void send(data)
                 </code></pre>
                 <ul>
-                    <li class="fragment">Überträgt die Daten über die Verbindung zum Server</li>
+                    <li class="fragment" style="font-size: 28px">Überträgt die Daten über die Verbindung zum Server</li>
                 </ul>
                 <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">
                     void close([code, reason])
                 </code></pre>
                 <ul>
-                    <li class="fragment">Beendet die Vorhandene Verbindung</li>
+                    <li class="fragment" style="font-size: 28px">Beendet die Vorhandene Verbindung</li>
                 </ul>
                 <pre class="fragment"><code class="javascript" style="font-size: 16px;">
                     // called on button press 'send...', sends message to server
@@ -283,6 +325,10 @@
             <br>
             <a href="client.html" target="popup"
                onclick="window.open('client.html', 'client2', 'width=800, height = 800')">Client2 öffnen</a>
+        </section>
+
+        <section>
+            <img src="src/fragen.png" style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto">
         </section>
 
         <section>
