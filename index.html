@@ -105,11 +105,8 @@
             <section>
                 <h2>Wie kommunizieren Client und Server? </h2>
 
-                <p>Inhalt. Inhalt. Inhalt..</p>
+                <img src="WebSocket.png" alt="WebSocket" class="fragment">
                 <br>
-                <a href="#/2">
-                    up
-                </a>
             </section>
             <section>
                 <h2>Anwendungsbeispiele </h2>
@@ -268,13 +265,86 @@
         </section>
 
         <section>
+        <section>
             <h2>Server</h2>
-
-            <p>
-                Inhalt. Inhalt. Inhalt.
-            </p>
+            <ol>
+                <li class="fragment">WebSocket erstellen und öffnen</li>
+                <li class="fragment">Verbindungsaufbau mit WebSocket</li>
+                <li class="fragment">Versenden von Messages</li>
+                <li class="fragment">Versenden von Broadcast-Messages</li>
+                <li class="fragment">Beenden der Verbindung mit WebSocket</li>
         </section>
+        <section>
+            <h6>WebSocket erstellen und öffnen</h6>
+            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">
+                var WebSocketServer = require('websocket').server,                
+    http = require('http');
+                </code><small>Benötige Module für Node.JS</small></pre>
+            
+            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">server.listen(8080, function() {
+    // wird bei binden auf den port ausgeführt (1x)
+    console.log((new Date()) + ' Server is listening on port 8080');
+});
+                </code><small>Server wird mit Port 8080 verbunden und wartet auf Nachrichten</small></pre>
+            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">var wsServer = new WebSocketServer({
+    httpServer: server,
+    autoAcceptConnections: false    // manuelles request.accept (Line 45)
+});</code><small>WebSocketServer öffnen</small>
+            </pre>
+            </section>
+            
+            <section>
+                <h6>Verbindungsaufbau mit WebSocket</h6>
+             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">wsServer.on('request', function(request) {
+    if (!originIsAllowed(request.origin)) {
+      request.reject();
+      console.log((new Date()) + ' Connection from origin ' + request.origin 
+      + ' rejected.'); // logge Datum und Verbindungsherkunft
+      return;} // Funktion wsServer.on('request') verlassen 
+      
+    var connection = request.accept('echo-protocol', request.origin);
+}</code><small>Ablehnen der Verbindung, wenn Client nicht auf WebSocketServer zugreifen darf</small>
+    <small>wenn das nicht der Fall ist, wird eine neue Verbindung mit dem Echo-Protokoll und der Herkunft aufgebaut</small></pre>
+            </section>
+            
+            <section>
+                <h6>Versenden von Messages</h6>
+             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">connection.on('message', 
+             function(message){for (var i=0; i &lt;  connections.length; i++) {
+       if(connection != connections[i]) {
+         connections[i].sendUTF(message.utf8Data);
+       }
+    }</code><small>Senden der Nachricht an alle verbindungen, außer die eigene</small></pre>
+            </section>
+            
+            
+            
+            <section>
+                <h6>Versenden von Broadcast-Messages</h6>
+            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">var WebSocketServer = require('ws').Server
+  , wss = new WebSocketServer({ port: 8080 });
 
+wss.broadcast = function broadcast(data) {
+  wss.clients.forEach(function each(client) {
+    client.send(data);
+  });
+};</code><small>Neuen WebSocketServer öffnen & Broadcast-Funktion nutzen</small> 
+</pre>
+            </section>
+            
+            
+            <section>
+                <h6>Beenden der Verbindung mit WebSocket</h6>
+             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">connection.on('close', function(reasonCode, description) {
+        console.log((new Date()) + ' one Client disconnected.');
+        numberOfConnections--;
+             </code><small>Wird aufgerufen, wenn die Verbindung beendet wird - egal auf welche Art und Weise</small></pre>   
+                
+
+            </section>
+            
+        </section>
+        
         <section>
             <h2>System Demo</h2>
 
