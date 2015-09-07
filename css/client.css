@@ -1,18 +1,38 @@
-body {
+html, body {
     cursor: url(uni.gif), auto;
+    height:100%;
+    width: 100%;
 }
 
 
 .buttonDesign {
     background-color: aliceblue;
-    font-size: xx-large;
+    font-size: large;
 
-    color: lightskyblue;
+    color: black;
     text-shadow: 2px 2px 5px black;
 
     margin-right: 45px;
     padding-right: 12px;
     cursor: url(uni.gif), auto;
+
+    width: 34%;
+    height: 5%;
+}
+
+#questionMark {
+    background-color: aliceblue;
+    font-size: large;
+
+    color: black;
+    text-shadow: 2px 2px 5px black;
+
+    margin-right: 45px;
+    padding-right: 12px;
+    cursor: url(uni.gif), auto;
+
+    width: 5%;
+    height: 5%;
 }
 
 #serverResponse {
@@ -24,6 +44,9 @@ body {
     text-shadow: 2px 2px 5px black;
     resize: none;
     cursor: url(uni.gif), auto;
+
+    width: 90%;
+    height: 80%;
 }
 
 #message {
@@ -31,6 +54,9 @@ body {
 
     color: orangered;
     text-shadow: 2px 2px 5px black;
-    font-size: xx-large;
-    cursor: url(uni.gif), auto;
+    font-size: larger;
+    cursor: crosshair;
+
+    width: 90%;
+    height: 5%;
 }
