@@ -43,15 +43,16 @@
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section data-background="src/internetBG.png">
-            <h1>Web Sockets</h1>
-
-            <h3><a href="https://github.com/websockets/ws" target="_blank"
-                   style="color: darkred; text-decoration: underline"> WS Library</a></h3>
+            <span style="font-size: 120px">Web Sockets</span>
+            <br>
+            <a href="https://github.com/websockets/ws" target="_blank"
+               style="color: darkred; text-decoration: underline; text-shadow: 2px 2px black; font-size: 60px "> WS
+                Library</a>
 
             <p>
-                <small>
-                    <span style="color:orangered"> Peter Ulbrich und Anna-Lisa Schaefer</span>
-                </small>
+                <br><br>
+                <span style="color:burlywood; text-shadow: 2px 2px black; font-size: 40px"> Peter Ulbrich und Anna-Lisa Schaefer</span>
+
             </p>
         </section>
 
@@ -89,12 +90,16 @@
                     <li class="fragment">Netzwerkprotokoll</li>
                     <li class="fragment">bidirektionale Verbindung Webanwendung <-> WebSocket-Server</li>
                     <figure class="fragment">
-                        <div><img src="src/protokollstapel.png" style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto"></div>
-                        <figcaption style="text-align: center"><small>baut auf TCP auf</small></figcaption>
+                        <div><img src="src/protokollstapel.png"
+                                  style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto">
+                        </div>
+                        <figcaption style="text-align: center">
+                            <small>baut auf TCP auf</small>
+                        </figcaption>
                     </figure>
-                    <li class="fragment">URL-Schemata: </li>
+                    <li class="fragment">URL-Schemata:</li>
                     <ul>
-                        <li class="fragment">ws  [unverschlüsselt]</li>
+                        <li class="fragment">ws [unverschlüsselt]</li>
                         <li class="fragment">wss [verschlüsselt]</li>
                     </ul>
                 </ul>
@@ -103,8 +108,12 @@
             <section>
                 <h2>Vergleich mit HTTP </h2>
                 <figure class="fragment">
-                    <div><img src="src/httpVSws.png" style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto"></div>
-                    <figcaption style="text-align: center"><small>Anfrage->Antwort VS bidirektionale Verbindung</small></figcaption>
+                    <div><img src="src/httpVSws.png"
+                              style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto">
+                    </div>
+                    <figcaption style="text-align: center">
+                        <small>Anfrage->Antwort VS bidirektionale Verbindung</small>
+                    </figcaption>
                 </figure>
                 <ul>
                     <li class="fragment">Eine TCP-Verbindung bleibt nach Handshake bestehen</li>
@@ -122,7 +131,7 @@
                     </ul>
                     <li class="fragment">beinhaltet weitere Daten (verwendetes Protokoll usw)</li>
                 </ul>
-                
+
                 <img src="src/WebSocket.png" alt="WebSocket" class="fragment" style="max-width: 40%; max-height: 100%">
                 <br>
             </section>
@@ -144,7 +153,7 @@
                     Sec-WebSocket-Key: iBgwl+Rk0N0aptagxD3+pQ==
                     Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
                     Sec-WebSocket-Protocol: echo-protocol
-                    </code>
+                </code>
                 <code class="javascript" style="font-size: 11px;">
                     HTTP/1.1 101 Switching Protocols
                     Upgrade: websocket
@@ -215,7 +224,9 @@
                 </code></pre>
                 <span style="font-size: 30px" class="fragment">
                     <ul>
-                        <li>Anzahl der Bytes, die durch send() gebuffert und noch nicht über das Netzwerk versand wurden.</li>
+                        <li>Anzahl der Bytes, die durch send() gebuffert und noch nicht über das Netzwerk versand
+                            wurden.
+                        </li>
                     </ul>
                 </span>
             </section>
@@ -252,28 +263,28 @@
             </section>
 
             <section>
-                <pre><code class="javascript"  style="font-size: 18px;">
+                <pre><code class="javascript" style="font-size: 18px;">
                     connection.onopen = function () {
-                        console.log("Connection is open");
+                    console.log("Connection is open");
                     };
                     connection.onerror = function (error) {
-                        console.log(error);
-                        alert(error);
+                    console.log(error);
+                    alert(error);
                     };
                     connection.onmessage = function (e) {
-                        console.log("Server: " + e.data);
-                        // Append to TextArea
-                        var obj = document.getElementById("serverResponse");
-                        obj.value += "Server: " + e.data + '\n';
+                    console.log("Server: " + e.data);
+                    // Append to TextArea
+                    var obj = document.getElementById("serverResponse");
+                    obj.value += "Server: " + e.data + '\n';
                     };
                 </code></pre>
-                    <pre><code class="javascript"  style="font-size: 18px;">
-                    connection.onclose = function () {
+                    <pre><code class="javascript" style="font-size: 18px;">
+                        connection.onclose = function () {
                         console.log("Connection was closed");
                         // Append to TextArea
                         var obj = document.getElementById("serverResponse");
                         obj.value += "Connection was closed\n\n";
-                    };
+                        };
                     </code></pre>
             </section>
 
@@ -312,86 +323,92 @@
         </section>
 
         <section>
-        <section>
-            <h2>Server</h2>
-            <ol>
-                <li class="fragment">WebSocket erstellen und öffnen</li>
-                <li class="fragment">Verbindungsaufbau mit WebSocket</li>
-                <li class="fragment">Versenden von Messages</li>
-                <li class="fragment">Versenden von Broadcast-Messages</li>
-                <li class="fragment">Beenden der Verbindung mit WebSocket</li>
-        </section>
-        <section>
-            <h6>WebSocket erstellen und öffnen</h6>
+            <section>
+                <h2>Server</h2>
+                <ol>
+                    <li class="fragment">WebSocket erstellen und öffnen</li>
+                    <li class="fragment">Verbindungsaufbau mit WebSocket</li>
+                    <li class="fragment">Versenden von Messages</li>
+                    <li class="fragment">Versenden von Broadcast-Messages</li>
+                    <li class="fragment">Beenden der Verbindung mit WebSocket</li>
+            </section>
+            <section>
+                <h6>WebSocket erstellen und öffnen</h6>
             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">
-                var WebSocketServer = require('websocket').server,                
-    http = require('http');
-                </code><small>Benötige Module für Node.JS</small></pre>
+                var WebSocketServer = require('websocket').server,
+                http = require('http');
+            </code><small>Benötige Module für Node.JS</small></pre>
             
-            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">server.listen(8080, function() {
-    // wird bei binden auf den port ausgeführt (1x)
-    console.log((new Date()) + ' Server is listening on port 8080');
-});
-                </code><small>Server wird mit Port 8080 verbunden und wartet auf Nachrichten</small></pre>
-            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">var wsServer = new WebSocketServer({
-    httpServer: server,
-    autoAcceptConnections: false    // manuelles request.accept (Line 45)
-});</code><small>WebSocketServer öffnen</small>
+            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">server.listen(8080,
+                function() {
+                // wird bei binden auf den port ausgeführt (1x)
+                console.log((new Date()) + ' Server is listening on port 8080');
+                });
+            </code><small>Server wird mit Port 8080 verbunden und wartet auf Nachrichten</small></pre>
+            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">var wsServer = new
+                WebSocketServer({
+                httpServer: server,
+                autoAcceptConnections: false // manuelles request.accept (Line 45)
+                });</code><small>WebSocketServer öffnen</small>
             </pre>
             </section>
-            
+
             <section>
                 <h6>Verbindungsaufbau mit WebSocket</h6>
-             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">wsServer.on('request', function(request) {
-    if (!originIsAllowed(request.origin)) {
-      request.reject();
-      console.log((new Date()) + ' Connection from origin ' + request.origin 
-      + ' rejected.'); // logge Datum und Verbindungsherkunft
-      return;} // Funktion wsServer.on('request') verlassen 
-      
-    var connection = request.accept('echo-protocol', request.origin);
-}</code><small>Ablehnen der Verbindung, wenn Client nicht auf WebSocketServer zugreifen darf</small>
-    <small>wenn das nicht der Fall ist, wird eine neue Verbindung mit dem Echo-Protokoll und der Herkunft aufgebaut</small></pre>
+             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">wsServer.on('request',
+                 function(request) {
+                 if (!originIsAllowed(request.origin)) {
+                 request.reject();
+                 console.log((new Date()) + ' Connection from origin ' + request.origin
+                 + ' rejected.'); // logge Datum und Verbindungsherkunft
+                 return;} // Funktion wsServer.on('request') verlassen
+
+                 var connection = request.accept('echo-protocol', request.origin);
+                 }</code><small>Ablehnen der Verbindung, wenn Client nicht auf WebSocketServer zugreifen darf</small>
+    <small>wenn das nicht der Fall ist, wird eine neue Verbindung mit dem Echo-Protokoll und der Herkunft aufgebaut
+    </small></pre>
             </section>
-            
+
             <section>
                 <h6>Versenden von Messages</h6>
-             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">connection.on('message', 
-             function(message){for (var i=0; i &lt;  connections.length; i++) {
-       if(connection != connections[i]) {
-         connections[i].sendUTF(message.utf8Data);
-       }
-    }</code><small>Senden der Nachricht an alle verbindungen, außer die eigene</small></pre>
+             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">connection.on('message',
+                 function(message){for (var i=0; i &lt; connections.length; i++) {
+                 if(connection != connections[i]) {
+                 connections[i].sendUTF(message.utf8Data);
+                 }
+                 }</code><small>Senden der Nachricht an alle verbindungen, außer die eigene</small></pre>
             </section>
-            
-            
-            
+
+
             <section>
                 <h6>Versenden von Broadcast-Messages</h6>
-            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">var WebSocketServer = require('ws').Server
-  , wss = new WebSocketServer({ port: 8080 });
+            <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">var WebSocketServer =
+                require('ws').Server
+                , wss = new WebSocketServer({ port: 8080 });
 
-wss.broadcast = function broadcast(data) {
-  wss.clients.forEach(function each(client) {
-    client.send(data);
-  });
-};</code><small>Neuen WebSocketServer öffnen & Broadcast-Funktion nutzen</small> 
+                wss.broadcast = function broadcast(data) {
+                wss.clients.forEach(function each(client) {
+                client.send(data);
+                });
+                };</code><small>Neuen WebSocketServer öffnen & Broadcast-Funktion nutzen</small>
 </pre>
             </section>
-            
-            
+
+
             <section>
                 <h6>Beenden der Verbindung mit WebSocket</h6>
-             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">connection.on('close', function(reasonCode, description) {
-        console.log((new Date()) + ' one Client disconnected.');
-        numberOfConnections--;
-             </code><small>Wird aufgerufen, wenn die Verbindung beendet wird - egal auf welche Art und Weise</small></pre>   
-                
+             <pre class="fragment"><code class="javascript" data-trim style="font-size: 18px;">connection.on('close',
+                 function(reasonCode, description) {
+                 console.log((new Date()) + ' one Client disconnected.');
+                 numberOfConnections--;
+             </code><small>Wird aufgerufen, wenn die Verbindung beendet wird - egal auf welche Art und Weise
+             </small></pre>
+
 
             </section>
-            
+
         </section>
-        
+
         <section>
             <h2>System Demo</h2>
 
@@ -403,7 +420,8 @@ wss.broadcast = function broadcast(data) {
         </section>
 
         <section>
-            <img src="src/fragen.png" style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto">
+            <img src="src/fragen.png"
+                 style="background:none; border:none; box-shadow:none; display: block; margin-left: auto; margin-right: auto">
         </section>
 
         <section>
