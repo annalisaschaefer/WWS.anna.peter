@@ -60,6 +60,12 @@
         function showHelp() {
             alert("Commands:\n/status               number of connections\n/date                 Date\n/serverClose      close Connection [server-side]\n/humanFirewall\n\n\nEverything is server-side");
         }
+
+        function sendEnter() {
+            if(event.keyCode == 13) {
+                send();
+            }
+        }
     </script>
 
 </head>
@@ -68,7 +74,7 @@
 <textarea disabled id="serverResponse" rows="20" cols="50"></textarea>
 <br>
 <!-- What to send to the server -->
-<input type="text" id="message" size="40">
+<input type="text" id="message" size="40" onkeydown="sendEnter()">
 <br>
 <br>
 <!-- Button -->
