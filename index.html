@@ -134,6 +134,10 @@
 
                 <img src="src/WebSocket.png" alt="WebSocket" class="fragment" style="max-width: 40%; max-height: 100%">
                 <br>
+                <aside class="notes">
+                ähnelt HTTP-Header/abwärtskompatibel 
+                -> Nutzung Standard-HTTP-Port "80" für HTTP Kommunikation & WebSocket-Nutzung
+                ->Mitgabe weiterer Informationen</aside>
             </section>
 
             <section>
@@ -162,6 +166,14 @@
                     Sec-WebSocket-Protocol: echo-protocol
                     Origin: http://46.101.250.180
                 </code></pre>
+                <aside class="notes">
+                Client - Angabe Ressource/HTTP& Host (46.101.250.180:8080)
+                    -Anforderung Uprade auf WebSockProtokoll, Origin:Herkunft(Host),
+                    -Sec-WebSocketKey: Überprüfung Server Nachricht gelesen& verstanden?
+                    -aufbauende Protokolle auf WebSocketProtokoll
+                Server - HTTP-Statuscode 101 + 2 Zeilen, Verfizieren Anfrage
+                    -kennt echo-protocol, Herkunft bestätigt
+                </aside>
             </section>
 
             <section>
